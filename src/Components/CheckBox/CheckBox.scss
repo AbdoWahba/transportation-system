@@ -6,6 +6,10 @@
 
 .checkbox {
     position: relative;
+    display: block;
+    height: 26px;
+    width: 26px;
+    margin: 4.5px 0;
 
     &__checkmark {
         height: 26px;
@@ -15,6 +19,7 @@
         top: 0;
         left: 0;
         border: 3px solid $color-primary;
+        background-color: $color-white;
 
         &--image {
             fill: $color-white;
