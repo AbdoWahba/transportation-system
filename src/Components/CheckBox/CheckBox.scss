@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.checkbox__svg--logo {
+    fill: $color-white;
+}
+
+.checkbox {
+    position: relative;
+
+    &__checkmark {
+        height: 26px;
+        width: 26px;
+        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 3px solid $color-primary;
+
+        &--image {
+            fill: $color-white;
+        }
+
+        &--svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+
+
+#special-checkbox {
+    opacity: 0;
+
+    &:checked~.checkbox__checkmark {
+        background-color: $color-primary;
+    }
+}
