@@ -1,0 +1,47 @@
+@import "../../styles/variables.scss";
+
+.table {
+    padding: 0;
+    margin: 0;
+}
+
+.table td,
+.table th {
+    padding: 7.5px;
+    margin: auto 0;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table thead th {
+    vertical-align: middle;
+
+}
+
+.table thead {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: Medium;
+    font-size: 19px;
+    color: $color-white;
+    background-color: $color-primary;
+}
+
+.table tbody {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: Medium;
+    font-size: 19px;
+    color: $color-black;
+}
+
+.table__button {
+    background-color: $color-primary;
+    width: 115px;
+    border: 0px;
+    height: 30px;
+    box-shadow: 2px 3px 3px $color-tertiary;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: $color-white;
+    border-radius: 5px;
+}
