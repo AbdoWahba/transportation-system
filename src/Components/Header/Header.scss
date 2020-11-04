@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.header {
+    background-color: $color-primary;
+    box-shadow: 3px 3px 5px $color-tertiary;
+    position: sticky;
+    padding: 18px 30px;
+    margin-bottom: 20px;
+
+    &__title {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        text-align: left;
+        color: $color-white;
+        letter-spacing: 0px;
+        font-size: 22px;
+    }
+}
