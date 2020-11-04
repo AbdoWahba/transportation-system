@@ -2,9 +2,9 @@ import React from 'react';
 import './Header.scss';
 function Header() {
   return (
-    <div className='header'>
+    <header className='header'>
       <h6 className='header__title'>Transportation</h6>
-    </div>
+    </header>
   );
 }
 
