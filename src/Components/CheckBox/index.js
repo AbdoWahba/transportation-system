@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CheckBox.scss';
 
-function CheckBox({ onChange, propsChecked, borderColor, propsAllSimilar }) {
+function CheckBox({ onChange, propsChecked, borderColor, propsNotAllSimilar }) {
   let [checked, setChecked] = useState(propsChecked || false);
-  let [allSimilar, setAllSimilar] = useState(propsAllSimilar || false);
+  let [notAllSimilar, setNotAllSimilar] = useState(true && propsNotAllSimilar);
+
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    toggle();
+    if (isMounted.current) toggle();
+    else isMounted.current = true;
   }, [propsChecked]);
 
   useEffect(() => {
-    setAllSimilar(propsAllSimilar);
-  }, [propsAllSimilar]);
+    setNotAllSimilar(propsNotAllSimilar);
+  }, [propsNotAllSimilar]);
 
   const toggle = () => {
-    if (allSimilar) setChecked(!checked);
+    if (!notAllSimilar) setChecked(!checked);
     else {
       setChecked(true);
-      setAllSimilar(true);
+      setNotAllSimilar(true);
     }
   };
 
@@ -36,7 +39,7 @@ function CheckBox({ onChange, propsChecked, borderColor, propsAllSimilar }) {
       <span
         className='checkbox__checkmark'
         style={
-          !allSimilar
+          notAllSimilar
             ? {
                 backgroundColor: '#306C95',
                 borderColor: borderColor ? borderColor : '#306C95',
@@ -51,7 +54,7 @@ function CheckBox({ onChange, propsChecked, borderColor, propsAllSimilar }) {
           className='checkbox__checkmark--svg'>
           <defs></defs>
           <path
-            style={!allSimilar ? { fill: '#306C95' } : {}}
+            style={notAllSimilar ? { fill: '#306C95' } : {}}
             className='checkbox__checkmark--image'
             d='M5.546,11.435a.739.739,0,0,1-1.046,0L.325,7.259a1.109,1.109,0,0,1,0-1.568l.523-.523a1.109,1.109,0,0,1,1.569,0L5.023,7.775,12.067.731a1.109,1.109,0,0,1,1.569,0l.523.523a1.109,1.109,0,0,1,0,1.568Zm0,0'
             transform='translate(0 -0.406)'
