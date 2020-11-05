@@ -1,5 +1,10 @@
 @import "../../styles/variables.scss";
 
+.table__container {
+    padding: 0;
+    margin: 0;
+}
+
 .table {
     padding: 0;
     margin: 0;
@@ -15,7 +20,6 @@
 
 .table thead th {
     vertical-align: middle;
-
 }
 
 .table thead {
@@ -44,4 +48,13 @@
     font-size: 15px;
     color: $color-white;
     border-radius: 5px;
+}
+
+.table__button:hover {
+    background-color: lighten($color: $color-primary, $amount: 10%);
+
+}
+
+.table__button:focus {
+    outline: 0px;
 }
