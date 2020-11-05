@@ -1,14 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CheckBox from '../CheckBox';
 import './Table.scss';
+import { useSelector } from 'react-redux';
 function Table() {
+  const [selected, setSelected] = useState({});
+  const companiesList = useSelector((state) => state.companiesList);
+
+  useEffect(() => {
+    if (companiesList.length > 0)
+      setSelected(
+        companiesList.reduce(
+          (c, { ID }) => ({
+            ...c,
+            [ID]: false,
+          }),
+          {}
+        )
+      );
+  }, [companiesList]);
+
+  const selectChild = (e, id) => {
+    setSelected({ ...selected, [id]: e.target.checked });
+  };
+  const allEqual = (arr) => arr.every((val) => val === arr[0]);
+  const selectParent = (e) => {
+    const val = e.target.checked;
+    Object.keys(selected).forEach((key) => {
+      selected[key] = val;
+    });
+    setSelected({ ...selected });
+  };
+  console.log(selected);
+
   return (
     <div className='col-lg-8 table__container'>
       <table className='table table-responsive-sm'>
         <thead>
           <tr>
             <th scope='col'>
-              <CheckBox borderColor='#fff' />
+              <CheckBox
+                borderColor='#fff'
+                onChange={selectParent}
+                propsNotAllSimilar={!allEqual(Object.values(selected))}
+              />
             </th>
             <th scope='col'>Company ID #</th>
             <th scope='col'>Company Name</th>
@@ -41,7 +75,29 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {companiesList.map(({ ID, CanEdit, TotalFleet, Name }, ind) => (
+            <tr
+              key={ID}
+              style={{ backgroundColor: ind % 2 ? '#F1F2F4' : '#fff' }}>
+              <th scope='row'>
+                <CheckBox
+                  propsChecked={selected[ID]}
+                  onChange={(e) => {
+                    selectChild(e, ID);
+                  }}
+                />
+              </th>
+              <td>{ID}</td>
+              <td>{Name}</td>
+              <td>{TotalFleet}</td>
+              <td>
+                <button className='table__button' disabled={!CanEdit}>
+                  Edit
+                </button>
+              </td>
+            </tr>
+          ))}
+          {/* <tr>
             <th scope='row'>
               <CheckBox />
             </th>
@@ -73,7 +129,7 @@ function Table() {
             <td>
               <button className='table__button'>Edit</button>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
