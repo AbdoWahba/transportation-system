@@ -16,6 +16,7 @@
     margin: auto 0;
     vertical-align: middle;
     text-align: center;
+    border: 0px;
 }
 
 .table thead th {
@@ -48,13 +49,17 @@
     font-size: 15px;
     color: $color-white;
     border-radius: 5px;
+
+    &:hover {
+        background-color: lighten($color: $color-primary, $amount: 10%);
+
+    }
+
+    &:focus {
+        outline: 0px;
+    }
 }
 
-.table__button:hover {
-    background-color: lighten($color: $color-primary, $amount: 10%);
-
-}
-
-.table__button:focus {
-    outline: 0px;
+.table__button:disabled {
+    background-color: $color-tertiary;
 }
