@@ -1,0 +1,106 @@
+@import "../../styles/variables.scss";
+
+
+.bus-form {
+    padding: 16px 0px 0px 30px;
+    box-shadow: 2px 2px 3px $color-tertiary;
+    border: 0.20000000298023224px solid $color-tertiary;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    &__input--container {
+        margin-right: 30px;
+        margin-bottom: 16px;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: medium;
+        font-size: 19px;
+    }
+
+    &__button {
+        background-color: $color-primary;
+        width: 180px;
+        border: 0px;
+        height: 40px;
+        box-shadow: 2px 3px 3px $color-tertiary;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: $color-white;
+        border-radius: 5px;
+        margin-bottom: 22px;
+        margin-right: 26px;
+
+        &:hover {
+            background-color: lighten($color: $color-primary, $amount: 10%);
+
+        }
+
+        &:focus {
+            outline: 0px;
+        }
+
+        &:disabled {
+            background-color: $color-tertiary;
+        }
+    }
+
+    @media (min-width: 992px) {
+
+        &__input--container.col-lg-4.padLg>div>div>input {
+            padding: 0px 15px;
+            box-sizing: content-box;
+        }
+
+        .marginforlg {
+            margin-right: 90px;
+        }
+
+        &__input--container.col-lg-12>div>div>input {
+            padding: 0px 45px 0px 15px;
+            box-sizing: content-box;
+        }
+    }
+
+
+    &__title {
+        margin-bottom: 15px;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+        color: $color-primary;
+    }
+}
+
+.nowrapclass {
+    flex-wrap: nowrap;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    &+label {
+        width: 160px;
+        height: 38px;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        color: $color-white;
+        background-color: $color-primary;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 5px;
+
+    }
+
+    &:focus+label,
+    &+label:hover {
+        background-color: darken($color: $color-primary, $amount:10%);
+    }
+
+
+}
