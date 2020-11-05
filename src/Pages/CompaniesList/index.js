@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '../../Components/Table';
 import './CompaniesList.scss';
+import { useDispatch } from 'react-redux';
+import { fetchAllCompanies } from '../../store/actions';
+
 function CompaniesList() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log('START');
+    dispatch(fetchAllCompanies());
+  }, []);
   return (
     <div>
       <button className='companies-list__button'>
@@ -14,7 +22,7 @@ function CompaniesList() {
             <style>{'.a{fill:#fff;}'}</style>
           </defs>
           <path
-            class='a'
+            className='a'
             d='M16.987,8.046H9.835V.894a.894.894,0,0,0-1.788,0V8.046H.894a.894.894,0,0,0,0,1.788H8.046v7.152a.894.894,0,1,0,1.788,0V9.834h7.152a.894.894,0,1,0,0-1.788Zm0,0'
             transform='translate(0)'
           />
