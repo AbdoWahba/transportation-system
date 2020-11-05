@@ -1,8 +1,7 @@
 import './App.scss';
 import Header from './Components/Header';
-import CheckBox from './Components/CheckBox';
-import { useState } from 'react';
 import Table from './Components/Table';
+import CompaniesList from './Pages/CompaniesList';
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <Header />
       <main>
         <section className='main-section'>
-          <Table />
+          <CompaniesList />
         </section>
       </main>
     </div>
