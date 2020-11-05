@@ -8,7 +8,7 @@ function CheckBox({ onChange, propsChecked, borderColor, propsNotAllSimilar }) {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) toggle();
+    if (isMounted.current) setChecked(propsChecked);
     else isMounted.current = true;
   }, [propsChecked]);
 
