@@ -1,0 +1,36 @@
+@import "../../styles/variables.scss";
+
+.form__button {
+    background-color: $color-primary;
+    width: 190px;
+    border: 0px;
+    height: 50px;
+    box-shadow: 2px 3px 3px $color-tertiary;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: $color-white;
+    border-radius: 5px;
+    margin-bottom: 22px;
+    margin-right: 26px;
+
+    &:hover {
+        background-color: lighten($color: $color-primary, $amount: 10%);
+
+    }
+
+    &:focus {
+        outline: 0px;
+    }
+
+    &:disabled {
+        background-color: $color-tertiary;
+    }
+}
+
+input.form-control,
+input.form-control:focus,
+select.form-control {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 0rem rgba($color-primary, 0);
+}
