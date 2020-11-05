@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+
+.company-form {
+    padding: 16px 0px 0px 30px;
+    box-shadow: 2px 2px 3px $color-tertiary;
+    border: 0.20000000298023224px solid $color-tertiary;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    &__input--container {
+        margin-right: 30px;
+        margin-bottom: 16px;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: Medium;
+        font-size: 19px;
+    }
+
+    &__title {
+        margin-bottom: 15px;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: Bold;
+        font-size: 25px;
+        color: $color-primary;
+    }
+}
