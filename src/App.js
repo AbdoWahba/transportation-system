@@ -3,6 +3,8 @@ import Header from './Components/Header';
 import CompaniesList from './Pages/CompaniesList';
 import { Route, BrowserRouter } from 'react-router-dom';
 import TransportationsFormAdd from './Pages/TransportationsForm/TransportationsFormAdd';
+import TransportationsFormEdit from './Pages/TransportationsForm/TransportationsFormEdit';
+
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getCountries, getVihcle } from './store/actions';
@@ -24,6 +26,11 @@ function App() {
               exact
               path='/companyDetails/add'
               component={TransportationsFormAdd}
+            />
+            <Route
+              exact
+              path='/companyDetails/edit/:id'
+              component={TransportationsFormEdit}
             />
           </section>
         </main>
