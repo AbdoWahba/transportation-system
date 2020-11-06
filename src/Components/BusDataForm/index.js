@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from 'react-redux';
-import image from './image.svg';
 import './BusDataForm.scss';
 
 const renderSelector = ({
