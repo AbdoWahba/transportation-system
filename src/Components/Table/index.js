@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import CheckBox from '../CheckBox';
 import './Table.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCompanyData } from '../../store/actions';
+import { useHistory } from 'react-router-dom';
 function Table() {
   const [selected, setSelected] = useState({});
   const companiesList = useSelector((state) => state.companiesList);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (companiesList.length > 0)
       setSelected(
@@ -31,6 +33,10 @@ function Table() {
     setSelected({ ...selected });
   };
   console.log(selected);
+  const history = useHistory();
+  const handleEdit = (id) => {
+    history.push('/companyDetails/edit/' + id);
+  };
 
   return (
     <div className='col-lg-8 table__container'>
@@ -91,7 +97,10 @@ function Table() {
               <td>{Name}</td>
               <td>{TotalFleet}</td>
               <td>
-                <button className='table__button' disabled={!CanEdit}>
+                <button
+                  className='table__button'
+                  disabled={!CanEdit}
+                  onClick={() => handleEdit(ID)}>
                   Edit
                 </button>
               </td>
