@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useSelector, useDispatch } from 'react-redux';
 import './CompanyDataForm.scss';
@@ -90,13 +90,19 @@ const renderField = ({
   </div>
 );
 
-function CompanyDataForm() {
+function CompanyDataForm({ initialValues }) {
   const formValues = useSelector((state) => state.form);
+  const selectedCompany = useSelector((state) => state.selectedCompany);
 
   const countries = useSelector((state) => state.countries);
   const cities = useSelector((state) => state.cities);
 
   console.log(cities);
+  useEffect(() => {
+    if (selectedCompany.ID) {
+      dispatch(getCity(selectedCompany.Country));
+    }
+  }, []);
   const dispatch = useDispatch();
   const fetchCities = (e) => {
     if (!(cities[e.target.value] && cities[e.target.value].length))

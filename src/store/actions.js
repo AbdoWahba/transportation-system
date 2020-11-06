@@ -24,7 +24,7 @@ export const fetchAllCompanies = () => (dispatch) => {
 export const getCompanyData = (id) => (dispatch) => {
   Client.get(`/TransportationCompany/GetById?id=${id}`)
     .then((res) =>
-      dispatch({ payload: res.data, type: actionsType.GET_COMPANY_DATA })
+      dispatch({ payload: res.data.Data, type: actionsType.GET_COMPANY_DATA })
     )
     .catch((err) =>
       dispatch({ payload: {}, type: actionsType.GET_COMPANY_DATA })

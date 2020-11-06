@@ -5,6 +5,7 @@ import './TransportationsForm.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from 'redux-form';
 import Client from '../../API';
+import { useHistory } from 'react-router-dom';
 const getRange = (lowEnd, highEnd) => {
   var list = [];
   for (var i = lowEnd; i <= highEnd; i++) {
@@ -47,6 +48,8 @@ function TransportationsFormAdd() {
   const dispatch = useDispatch();
   const [busNum, setBusNum] = useState(getRange(0, 1));
   console.log(getRange(0, busNum - 1));
+  const [errorMsg, setErrorMsg] = useState('');
+
   const addHandler = () => {
     // debugger;
     setBusNum([...busNum, busNum[busNum.length - 1] + 1]);
@@ -61,8 +64,9 @@ function TransportationsFormAdd() {
       dispatch(reset(`busForm${id + 1}`));
     });
   };
+
+  const history = useHistory();
   const submitHandler = () => {
-    debugger;
     const busForm = busNum.map((id) => formValues[`busForm${id + 1}`].values);
     const companyForm = formValues.companyForm.values;
     if (
@@ -75,11 +79,28 @@ function TransportationsFormAdd() {
         ...companyForm,
         TransportationCompanyBuses: busForm,
         Masked_ID: 'string',
-      });
+      })
+        .then((res) => {
+          if (res.data.Status == 1) {
+            history.push('/');
+          } else {
+            setErrorMsg('Something Went Wrong');
+            setTimeout(() => {
+              setErrorMsg('');
+            }, 3000);
+          }
+        })
+        .catch((err) => {
+          setErrorMsg('Something Went Wrong: ' + err.Message);
+          setTimeout(() => {
+            setErrorMsg('');
+          }, 3000);
+        });
     } else {
-      console.log(
-        'EEEEEEEEEEEEEEERRRRRRRRRRRRRRRROOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRR'
-      );
+      setErrorMsg('Fill all Empty fields');
+      setTimeout(() => {
+        setErrorMsg('');
+      }, 3000);
     }
   };
   console.log(busNum);
@@ -101,6 +122,13 @@ function TransportationsFormAdd() {
         );
       })}
       <div>
+        <div
+          className='alert alert-danger'
+          role='alert'
+          style={{ display: errorMsg ? 'block' : 'none' }}>
+          <strong>ERROR!!! </strong>
+          {errorMsg}
+        </div>
         <button className='form__button' onClick={clearHandler}>
           Clear
         </button>
