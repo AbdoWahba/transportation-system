@@ -3,8 +3,10 @@ import Table from '../../Components/Table';
 import './CompaniesList.scss';
 import { useDispatch } from 'react-redux';
 import { fetchAllCompanies } from '../../store/actions';
+import { useHistory } from 'react-router-dom';
 
 function CompaniesList() {
+  const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('START');
@@ -12,7 +14,11 @@ function CompaniesList() {
   }, []);
   return (
     <div>
-      <button className='companies-list__button'>
+      <button
+        className='companies-list__button'
+        onClick={() => {
+          history.push('/companyDetails/add');
+        }}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='17.881'
